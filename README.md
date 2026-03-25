@@ -1,8 +1,6 @@
 # Pathfinder: AI Search Algorithm Visualizer
 
-<img width="1901" height="880" alt="image" src="https://github.com/user-attachments/assets/7458bc54-8bea-4a54-bbc6-61bc7c6b6b27" />
-
-
+<img width="1899" height="858" alt="image" src="https://github.com/user-attachments/assets/8e863b2f-af3b-4e7b-b105-1660852ee8af" />
 ## Project Overview
 
 Pathfinder is a web-based application designed to visualize the execution of various AI pathfinding algorithms in real-time. It provides an interactive grid where users can observe how different search strategies explore a space to find the optimal path from a starting point to an end point. This tool is built to offer a clear and intuitive understanding of how these fundamental AI algorithms operate.
