@@ -126,26 +126,26 @@ export default function Visualizer() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="border-b border-border px-4 py-3 flex items-center justify-between w-full">
-        <div className="flex items-center gap-4">
-          <h1 className="text-4xl font-bold font-mono text-primary tracking-tight">
-            PathFinder 
+      <header className="border-b border-border px-6 py-5 flex items-center justify-between w-full bg-card shadow-lg">
+        <div className="flex flex-col items-start gap-1">
+          <h1 className="text-5xl font-bold font-mono text-primary tracking-tighter drop-shadow-lg">
+            PathFinder
           </h1>
-          <span className="text-lg font-bold text-muted-foreground hidden sm:inline">
-            - A Search Algorithm Visualizer to understand how AI path-finds
-          </span>
+          <p className="text-sm text-muted-foreground font-medium">
+            An interactive AI pathfinding visualizer that brings search algorithms to life on dynamic grids.
+          </p>
         </div>
-        <span className="text-sm text-gray-400 font-medium">
+        <span className="text-xs text-muted-foreground font-medium">
           Made by: Anya Kumar, Soumya Bhatia and M. Dharni
         </span>
       </header>
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar Controls */}
-        <aside className="w-64 border-r border-border p-4 flex flex-col gap-4 overflow-y-auto shrink-0">
+        <aside className="w-64 border-r border-border p-5 flex flex-col gap-5 overflow-y-auto shrink-0 bg-card shadow-xl">
           {/* Algorithm Selection */}
-          <div>
-            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-1.5 block">Algorithm</label>
+          <div className="rounded-lg bg-muted/40 p-4 space-y-2">
+            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2 block">Algorithm</label>
             <Select value={algorithm} onValueChange={(v) => { setAlgorithm(v as AlgorithmKey); clearVisualization(); }}>
               <SelectTrigger>
                 <SelectValue />
@@ -161,21 +161,25 @@ export default function Visualizer() {
                 ))}
               </SelectContent>
             </Select>
-            <p className="text-base text-muted-foreground mt-1.5">{algoInfo.description}</p>
-            <span className={`inline-block mt-1 text-[10px] font-mono px-1.5 py-0.5 rounded ${algoInfo.type === 'Informed' ? 'bg-accent/20 text-accent' : 'bg-primary/20 text-primary'}`}>
+            <p className="text-sm text-foreground mt-2 leading-relaxed">{algoInfo.description}</p>
+            <span className={`inline-block mt-2 text-[10px] font-mono px-2.5 py-1 rounded-full transition-colors ${algoInfo.type === 'Informed' ? 'bg-accent/30 text-accent font-semibold' : 'bg-primary/30 text-primary font-semibold'}`}>
               {algoInfo.type}
             </span>
           </div>
 
           {/* Tools */}
-          <div>
-            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-1.5 block">Draw Tool</label>
-            <div className="grid grid-cols-2 gap-1.5">
+          <div className="rounded-lg bg-muted/40 p-4 space-y-2">
+            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2 block">Draw Tool</label>
+            <div className="grid grid-cols-2 gap-2">
               {tools.map(t => (
                 <button
                   key={t.key}
                   onClick={() => setTool(t.key)}
-                  className={`text-xs py-1.5 px-2 rounded-md border transition-colors ${tool === t.key ? 'border-primary bg-primary/10 text-primary' : 'border-border text-muted-foreground hover:text-foreground'}`}
+                  className={`text-xs py-2 px-3 rounded-lg border-2 transition-all font-medium ${
+                    tool === t.key
+                      ? 'border-primary bg-primary/20 text-primary shadow-lg'
+                      : 'border-border text-muted-foreground hover:text-foreground hover:border-primary/50 hover:bg-muted/60'
+                  }`}
                 >
                   {t.label}
                 </button>
@@ -184,46 +188,46 @@ export default function Visualizer() {
           </div>
 
           {/* Speed */}
-          <div>
-            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-1.5 block">Speed</label>
+          <div className="rounded-lg bg-muted/40 p-4 space-y-2">
+            <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2 block">Speed</label>
             <Slider value={[speed]} onValueChange={([v]) => setSpeed(v)} min={1} max={100} step={1} />
           </div>
 
           {/* Actions */}
-          <div className="flex flex-col gap-2">
-            <Button onClick={runAlgorithm} className="w-full gap-2">
+          <div className="flex flex-col gap-2.5">
+            <Button onClick={runAlgorithm} className="w-full gap-2 font-semibold py-2 h-auto shadow-lg hover:shadow-xl transition-shadow">
               <Play className="w-4 h-4" /> Visualize
             </Button>
             {result && (
-              <Button variant="secondary" onClick={() => setIsPlaying(!isPlaying)} className="w-full gap-2">
+              <Button variant="secondary" onClick={() => setIsPlaying(!isPlaying)} className="w-full gap-2 font-medium py-2 h-auto transition-all">
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 {isPlaying ? 'Pause' : 'Resume'}
               </Button>
             )}
             {result && (
-              <Button variant="secondary" onClick={() => setStepIndex(result.steps.length - 1)} className="w-full gap-2">
+              <Button variant="secondary" onClick={() => setStepIndex(result.steps.length - 1)} className="w-full gap-2 font-medium py-2 h-auto transition-all">
                 <SkipForward className="w-4 h-4" /> Skip to End
               </Button>
             )}
-            <Button variant="outline" onClick={() => { clearVisualization(); setGrid(createEmptyGrid()); }} className="w-full gap-2">
+            <Button variant="outline" onClick={() => { clearVisualization(); setGrid(createEmptyGrid()); }} className="w-full gap-2 font-medium py-2 h-auto transition-all">
               <RotateCcw className="w-4 h-4" /> Clear Grid
             </Button>
-            <Button variant="outline" onClick={() => { clearVisualization(); setGrid(generateMaze()); }} className="w-full gap-2">
+            <Button variant="outline" onClick={() => { clearVisualization(); setGrid(generateMaze()); }} className="w-full gap-2 font-medium py-2 h-auto transition-all">
               <Shuffle className="w-4 h-4" /> Random Maze
             </Button>
           </div>
 
           {/* Stats */}
           {currentStep && (
-            <div className="rounded-lg border border-border bg-muted/50 p-3 space-y-1">
-              <p className="text-xs font-mono text-muted-foreground">Step {stepIndex + 1} / {result!.steps.length}</p>
-              <p className="text-xs font-mono">Visited: <span className="text-primary">{currentStep.visited.length}</span></p>
+            <div className="rounded-lg border-2 border-primary/30 bg-primary/10 p-4 space-y-2 shadow-lg">
+              <p className="text-xs font-mono text-muted-foreground">Step <span className="font-bold text-secondary">{stepIndex + 1}</span> / <span className="font-bold text-secondary">{result!.steps.length}</span></p>
+              <p className="text-xs font-mono">Visited: <span className="text-primary font-bold">{currentStep.visited.length}</span></p>
               {currentStep.done && (
                 <>
                   <p className="text-xs font-mono">
                     {currentStep.found
-                      ? <>Path length: <span className="text-accent">{currentStep.path.length}</span></>
-                      : <span className="text-destructive">No path found</span>
+                      ? <>Path: <span className="text-accent font-bold">{currentStep.path.length}</span></>
+                      : <span className="text-destructive font-bold text-xs">✗ No path</span>
                     }
                   </p>
                 </>
@@ -232,21 +236,23 @@ export default function Visualizer() {
           )}
 
           {/* Legend */}
-          <div className="space-y-1.5 mt-auto">
-            <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Legend</p>
-            {[
-              ['bg-cell-start', 'Start'],
-              ['bg-cell-end', 'End'],
-              ['bg-cell-wall', 'Wall'],
-              ['bg-cell-visited', 'Visited'],
-              ['bg-cell-frontier', 'Frontier'],
-              ['bg-cell-path', 'Path'],
-            ].map(([color, label]) => (
-              <div key={label} className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-sm ${color}`} />
-                <span className="text-xs text-muted-foreground">{label}</span>
-              </div>
-            ))}
+          <div className="space-y-2.5 mt-auto rounded-lg bg-muted/40 p-4">
+            <p className="text-xs font-mono text-muted-foreground uppercase tracking-wider font-bold">Legend</p>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                ['bg-cell-start', 'Start'],
+                ['bg-cell-end', 'End'],
+                ['bg-cell-wall', 'Wall'],
+                ['bg-cell-visited', 'Visited'],
+                ['bg-cell-frontier', 'Frontier'],
+                ['bg-cell-path', 'Path'],
+              ].map(([color, label]) => (
+                <div key={label} className="flex items-center gap-2">
+                  <div className={`w-4 h-4 rounded-md ${color} shadow-md`} />
+                  <span className="text-xs text-muted-foreground font-medium">{label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </aside>
 

@@ -36,18 +36,20 @@ export default function Grid({ grid, step, onCellClick, onCellDrag, isDrawing, o
     if (cellType === 'wall') return 'bg-cell-wall';
 
     const key = posKey(row, col);
-    if (pathSet.has(key)) return 'bg-cell-path shadow-[0_0_6px_hsl(var(--cell-path)/0.5)] scale-110';
+    if (pathSet.has(key)) return 'bg-cell-path shadow-[0_0_6px_hsl(var(--cell-path)/0.4)]';
     if (step?.current && step.current.row === row && step.current.col === col)
-      return 'bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.7)] scale-125';
+      return 'bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.5)]';
     if (frontierSet.has(key)) return 'bg-cell-frontier opacity-70';
-    if (visitedSet.has(key)) return 'bg-cell-visited opacity-50';
-    return 'bg-cell-empty hover:bg-secondary';
+    if (visitedSet.has(key)) return 'bg-cell-visited opacity-60';
+    return 'bg-cell-empty hover:bg-muted/60 transition-colors';
   }, [grid, step, visitedSet, frontierSet, pathSet]);
 
   return (
     <div
       className="inline-grid gap-px rounded-lg overflow-hidden border border-border p-1 bg-border"
-      style={{ gridTemplateColumns: `repeat(${grid[0].length}, minmax(0, 1fr))` }}
+      style={{ 
+        gridTemplateColumns: `repeat(${grid[0].length}, minmax(0, 1fr))`,
+      }}
       onMouseLeave={onDrawEnd}
     >
       {grid.map((row, r) =>
