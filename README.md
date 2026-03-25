@@ -1,6 +1,7 @@
 # Pathfinder: AI Search Algorithm Visualizer
 
-![Pathfinder Demo](Screenshot_Demo.png)
+<img width="1901" height="880" alt="image" src="https://github.com/user-attachments/assets/7458bc54-8bea-4a54-bbc6-61bc7c6b6b27" />
+
 
 ## Project Overview
 
