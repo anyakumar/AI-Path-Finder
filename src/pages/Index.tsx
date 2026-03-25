@@ -136,7 +136,7 @@ export default function Visualizer() {
           </span>
         </div>
         <span className="text-sm text-gray-400 font-medium">
-          made by: Jai (RA2411026010131) & Aggam (RA2411026010139)
+          Made by: Anya Kumar, Soumya Bhatia and M. Dharni
         </span>
       </header>
 
