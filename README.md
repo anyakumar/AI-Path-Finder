@@ -43,7 +43,7 @@ To run this project on your local machine, follow these steps:
     npm run dev
     ```
 
-The application will be available at `http://localhost:5173`.
+The application will be available at `(http://localhost:8080/)`.
 
 ## Tech Stack
 
