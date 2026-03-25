@@ -1,6 +1,6 @@
 # PathFinder: Interactive AI Pathfinding Algorithm Visualizer
 
-<img width="1901" height="880" alt="image" src="https://github.com/user-attachments/assets/7458bc54-8bea-4a54-bbc6-61bc7c6b6b27" />
+<img width="1899" height="858" alt="Screenshot 2026-03-26 002423" src="https://github.com/user-attachments/assets/1710d89a-122c-4a8f-b2e4-aaf44a630e37" />
 
 ## 🎯 Project Overview
 
